@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int compare(const void* a, const void* b) {
+    return (*(char*)a - *(char*)b);
+}
+
+int main() {
+    char s[100];
+    printf("Enter the string: ");
+    scanf("%s", s);
+    int len = strlen(s);
+    qsort(s, len, sizeof(char), compare);
+    int ind = -1;
+    for (int i = 1; i < len; i++) {
+        if (s[i] == s[i - 1]) {
+            ind = i - 1;
+            break;
+        }
+    }
+    printf("\nThe sorted array: %s\n", s);
+    if (ind != -1) {
+        printf("The starting index of the repeating character: %d\n", ind);
+    } else {
+        printf("There are no repeated characters in the string %s\n", s);
+    }
+    return 0;
+}
